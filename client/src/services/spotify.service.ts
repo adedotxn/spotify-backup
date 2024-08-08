@@ -1,3 +1,4 @@
+import { fetcher } from "../utils/fetcher";
 import { getLocalStorage } from "../utils/localStorage";
 
 class SpotifyService {
@@ -12,20 +13,17 @@ class SpotifyService {
 
 
     async GetAccessToken() {
-        fetch("https://accounts.spotify.com/api/token", {
+        return fetcher("https://accounts.spotify.com/api/token", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             body: new URLSearchParams({
                 "grant_type": "client_credentials",
-                "client_id": this.clientId,
-                "client_secret": this.clientSecret
+                "client_id": "your-client-id",
+                "client_secret": "your-client-secret"
             })
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error("Error:", error));
+        });
 
     }
 
@@ -34,18 +32,18 @@ class SpotifyService {
         const token = getLocalStorage("spotifyToken");
         if (!token || token === "") return null;
 
-
-        fetch(`https://api.spotify.com/v1/playlists/${playlistId}`, {
+        return fetcher(`https://api.spotify.com/v1/playlists/${playlistId}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
             }
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error("Error:", error));
+        });
 
     }
+
+
+
+
 }
 
 export default new SpotifyService();
