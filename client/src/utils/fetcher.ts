@@ -1,2 +1,2 @@
-export const fetcher = (...args: [RequestInfo, RequestInit?]): Promise<unknown> =>
-    fetch(...args).then(res => res.json());
+export const fetcher = <T>(...args: [RequestInfo, RequestInit?]): Promise<T> =>
+    fetch(...args).then(res => res.json() as Promise<T>);

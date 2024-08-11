@@ -1,0 +1,1 @@
+export const SPOTIFY_ACCESS_TOKEN = "spotback-spotify-access-token";
