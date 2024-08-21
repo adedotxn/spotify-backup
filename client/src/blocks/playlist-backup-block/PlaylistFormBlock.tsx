@@ -7,7 +7,7 @@ export default function PlaylistFormBlock() {
   const hook = usePlaylistFormBlock();
 
   return (
-    <section className="px-12 grid grid-cols-2 gap-2 ">
+    <section className="md:px-12 grid md:grid-cols-2 gap-2 ">
       <div className="">
         <LoginBlock />
         <div className="my-3">
@@ -30,7 +30,7 @@ export default function PlaylistFormBlock() {
               Want to backup any specific public playlist instead? <br />{" "}
               <span className="text-lg">Paste Spotify Link</span>
             </label>
-            <div className="flex items-center gap-8">
+            <div className="grid md:flex items-center gap-2 md:gap-8">
               <div>
                 <Icon
                   icon="system-uicons:link"

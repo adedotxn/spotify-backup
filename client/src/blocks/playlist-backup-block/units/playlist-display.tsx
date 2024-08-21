@@ -11,12 +11,12 @@ export default function PlaylistsDisplay(props: PlaylistDisplayProps) {
 
   return (
     <div className="bg-gray-900 bg-opacity-65 p-6 rounded-lg shadow-lg h-[80vh] overflow-y-auto ">
-      <div className="flex justify-between items-center mb-6">
+      <div className="grid gap-2 md:flex md:justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-white">Your Playlists</h2>
-        <div className="flex gap-4">
+        <div className="grid md:flex gap-4">
           <button
             onClick={hook.toggleAllPlaylists}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-2xl transition duration-300"
+            className="bg-blue-500 hover:bg-blue-600 w-fit text-white font-semibold py-2 px-4 rounded-2xl transition duration-300"
           >
             {hook.selectedPlaylists.size === props.playlists.items.length
               ? "Deselect All"
@@ -29,7 +29,7 @@ export default function PlaylistsDisplay(props: PlaylistDisplayProps) {
               hook.selectedPlaylists.size === 0
                 ? "bg-gray-500 cursor-not-allowed"
                 : "bg-green-500 hover:bg-green-600"
-            } text-white font-semibold py-2 px-4 rounded-2xl transition duration-300`}
+            } text-white w-fit font-semibold py-2 px-4 rounded-2xl transition duration-300`}
           >
             Backup Selected
           </button>
@@ -88,6 +88,28 @@ export default function PlaylistsDisplay(props: PlaylistDisplayProps) {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="grid md:flex gap-3 my-5">
+        <button
+          onClick={hook.toggleAllPlaylists}
+          className="bg-blue-500 hover:bg-blue-600 w-fit text-white font-semibold py-2 px-4 rounded-2xl transition duration-300"
+        >
+          {hook.selectedPlaylists.size === props.playlists.items.length
+            ? "Deselect All"
+            : "Select All"}
+        </button>
+        <button
+          onClick={hook.handleBackup}
+          disabled={hook.selectedPlaylists.size === 0}
+          className={`${
+            hook.selectedPlaylists.size === 0
+              ? "bg-gray-500 cursor-not-allowed"
+              : "bg-green-500 hover:bg-green-600"
+          } text-white w-fit font-semibold py-2 px-4 rounded-2xl transition duration-300`}
+        >
+          Backup Selected
+        </button>
       </div>
     </div>
   );
