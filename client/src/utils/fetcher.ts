@@ -1,2 +1,13 @@
-export const fetcher = <T>(...args: [RequestInfo, RequestInit?]): Promise<T> =>
-    fetch(...args).then(res => res.json() as Promise<T>);
+export const fetcher = async <T>(
+  ...args: [RequestInfo, RequestInit?]
+): Promise<T> => {
+  const res = await fetch(...args);
+  const data = await res.json();
+
+  if (!res.ok) {
+    console.error("Error during fetch:", data);
+    throw data;
+  }
+
+  return data as T;
+};

@@ -1,162 +1,217 @@
+export interface SpotifyTokens {
+    access_token: string;
+    refresh_token?: string;
+    expires_in: number;
+}
+export interface SpotifyUser {
+    country: string,
+    display_name: string,
+    email: string,
+    explicit_content: {
+        filter_enabled: boolean,
+        filter_locked: boolean
+    },
+    external_urls: {
+        spotify: string
+    },
+    followers: {
+        href: string,
+        total: number
+    },
+    href: string,
+    id: string,
+    images: [
+        {
+            url?: string,
+            height: number,
+            width: number
+        }
+    ],
+    product: string,
+    type: string,
+    uri: string
+}
+export interface SpotifyUserPlaylists {
+    href: string,
+    limit: number,
+    next: string,
+    offset: number,
+    previous: string,
+    total: number,
+    items: [
+        {
+            collaborative: false,
+            description: string,
+            external_urls: {
+                spotify: string
+            },
+            href: string,
+            id: string,
+            images: [
+                {
+                    url: string,
+                    height: number,
+                    width: number
+                }
+            ],
+            name: string,
+            owner: {
+                external_urls: {
+                    spotify: string
+                },
+                followers: {
+                    href: string,
+                    total: number
+                },
+                href: string,
+                id: string,
+                type: string,
+                uri: string,
+                display_name: string
+            },
+            public: false,
+            snapshot_id: string,
+            tracks: {
+                href: string,
+                total: number
+            },
+            type: string,
+            uri: string
+        }
+    ]
+}
+
+
 export interface SpotifyPlaylist {
-    collaborative: boolean
-    description: string
-    external_urls: ExternalUrls
-    followers: Followers
-    href: string
-    id: string
-    images: Image[]
-    name: string
-    owner: Owner
-    primary_color: string | null
-    public: boolean
-    snapshot_id: string
-    tracks: Tracks
-    type: string
-    uri: string
-}
-
-interface ExternalUrls {
-    spotify: string
-}
-
-interface Followers {
-    href: string | null
-    total: number
-}
-
-interface Image {
-    height: number
-    url: string
-    width: number
-}
-
-interface Owner {
-    display_name: string
-    external_urls: ExternalUrls2
-    href: string
-    id: string
-    type: string
-    uri: string
-}
-
-interface ExternalUrls2 {
-    spotify: string
-}
-
-interface Tracks {
-    href: string
-    items: Item[]
-    limit: number
-    next: string | null | number
-    offset: number
-    previous: string | null | number
-    total: number
-}
-
-interface Item {
-    added_at: string
-    added_by: AddedBy
-    is_local: boolean
-    primary_color: string | null
-    track: Track
-    video_thumbnail: VideoThumbnail
-}
-
-interface AddedBy {
-    external_urls: ExternalUrls3
-    href: string
-    id: string
-    type: string
-    uri: string
-}
-
-interface ExternalUrls3 {
-    spotify: string
-}
-
-interface Track {
-    preview_url?: string
-    available_markets: string[]
-    explicit: boolean
-    type: string
-    episode: boolean
-    track: boolean
-    album: Album
-    artists: Artist2[]
-    disc_number: number
-    track_number: number
-    duration_ms: number
-    external_ids: ExternalIds
-    external_urls: ExternalUrls7
-    href: string
-    id: string
-    name: string
-    popularity: number
-    uri: string
-    is_local: boolean
-}
-
-interface Album {
-    available_markets: string[]
-    type: string
-    album_type: string
-    href: string
-    id: string
-    images: Image2[]
-    name: string
-    release_date: string
-    release_date_precision: string
-    uri: string
-    artists: Artist[]
-    external_urls: ExternalUrls5
-    total_tracks: number
-}
-
-interface Image2 {
-    url: string
-    width: number
-    height: number
-}
-
-interface Artist {
-    external_urls: ExternalUrls4
-    href: string
-    id: string
-    name: string
-    type: string
-    uri: string
-}
-
-interface ExternalUrls4 {
-    spotify: string
-}
-
-interface ExternalUrls5 {
-    spotify: string
-}
-
-interface Artist2 {
-    external_urls: ExternalUrls6
-    href: string
-    id: string
-    name: string
-    type: string
-    uri: string
-}
-
-interface ExternalUrls6 {
-    spotify: string
-}
-
-interface ExternalIds {
-    isrc: string
-}
-
-interface ExternalUrls7 {
-    spotify: string
-}
-
-interface VideoThumbnail {
-    url: string | null
+    collaborative: boolean;
+    description: string;
+    external_urls: {
+        spotify: string;
+    };
+    followers: {
+        href: string;
+        total: number;
+    };
+    href: string;
+    id: string;
+    images: {
+        url: string;
+        height: number;
+        width: number;
+    }[];
+    name: string;
+    owner: {
+        external_urls: {
+            spotify: string;
+        };
+        followers: {
+            href: string;
+            total: number;
+        };
+        href: string;
+        id: string;
+        type: string;
+        uri: string;
+        display_name: string;
+    };
+    public: boolean;
+    snapshot_id: string;
+    tracks: {
+        href: string;
+        limit: number;
+        next: string;
+        offset: number;
+        previous: string;
+        total: number;
+        items: {
+            added_at: string;
+            added_by: {
+                external_urls: {
+                    spotify: string;
+                };
+                followers: {
+                    href: string;
+                    total: number;
+                };
+                href: string;
+                id: string;
+                type: string;
+                uri: string;
+            };
+            is_local: boolean;
+            track: {
+                album: {
+                    album_type: string;
+                    total_tracks: number;
+                    available_markets: string[];
+                    external_urls: {
+                        spotify: string;
+                    };
+                    href: string;
+                    id: string;
+                    images: {
+                        url: string;
+                        height: number;
+                        width: number;
+                    }[];
+                    name: string;
+                    release_date: string;
+                    release_date_precision: string;
+                    restrictions?: {
+                        reason: string;
+                    };
+                    type: string;
+                    uri: string;
+                    artists: {
+                        external_urls: {
+                            spotify: string;
+                        };
+                        href: string;
+                        id: string;
+                        name: string;
+                        type: string;
+                        uri: string;
+                    }[];
+                };
+                artists: {
+                    external_urls: {
+                        spotify: string;
+                    };
+                    href: string;
+                    id: string;
+                    name: string;
+                    type: string;
+                    uri: string;
+                }[];
+                available_markets: string[];
+                disc_number: number;
+                duration_ms: number;
+                explicit: boolean;
+                external_ids: {
+                    isrc: string;
+                    ean: string;
+                    upc: string;
+                };
+                external_urls: {
+                    spotify: string;
+                };
+                href: string;
+                id: string;
+                is_playable: boolean;
+                linked_from?: Record<string, unknown>;
+                restrictions?: {
+                    reason: string;
+                };
+                name: string;
+                popularity: number;
+                preview_url: string;
+                track_number: number;
+                type: string;
+                uri: string;
+                is_local: boolean;
+            };
+        }[];
+    };
+    type: string;
+    uri: string;
 }

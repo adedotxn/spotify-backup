@@ -1,15 +1,26 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import PlaylistFormBlock from "./blocks/playlist-form-block/PlaylistFormBlock";
+import LoginBlock from "./blocks/login-block/LoginBlock";
+import PlaylistFormBlock from "./blocks/playlist-backup-block/PlaylistFormBlock";
+
+// import PlaylistFormBlock from "./blocks/playlist-form-block/PlaylistFormBlock";
 
 function App() {
   return (
-    <div className="bg-black h-screen text-white grid place-items-center md:w-full">
-      <div className="w-10/12 md:w-6/12">
-        <div>Spotify Backup</div>
-
-        <PlaylistFormBlock />
+    <BrowserRouter>
+      <div className="bg-black min-h-screen text-white grid place-items-center">
+        <div className="py-2 px-8 grid gap-3">
+          <div className="text-center">
+            <div>Spotify Backup</div>
+            <div className="text-sm">Backup your Spotify playlists</div>
+          </div>
+          <Routes>
+            <Route path="/" element={<PlaylistFormBlock />} />
+            {/* <Route path="/dashboard" element={< />} /> */}
+          </Routes>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
