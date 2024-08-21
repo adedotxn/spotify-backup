@@ -6,7 +6,7 @@ import spotifyService from "../../services/spotify.service";
 const LoginBlock = () => {
   const { isLoggedIn, handleLogin, handleLogout } = useLoginBlock();
 
-  const { data, error, isLoading } = useSWR(
+  const { data, error } = useSWR(
     "spotifyService.getCurrentUser",
     spotifyService.getCurrentUser,
   );

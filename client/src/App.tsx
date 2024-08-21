@@ -1,9 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import LoginBlock from "./blocks/login-block/LoginBlock";
 import PlaylistFormBlock from "./blocks/playlist-backup-block/PlaylistFormBlock";
-
-// import PlaylistFormBlock from "./blocks/playlist-form-block/PlaylistFormBlock";
 
 function App() {
   return (
@@ -16,7 +13,6 @@ function App() {
           </div>
           <Routes>
             <Route path="/" element={<PlaylistFormBlock />} />
-            {/* <Route path="/dashboard" element={< />} /> */}
           </Routes>
         </div>
       </div>
