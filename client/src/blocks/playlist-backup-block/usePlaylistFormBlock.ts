@@ -33,7 +33,7 @@ export const usePlaylistFormBlock = () => {
     setShouldFetchAllPlaylists(true);
   }
 
-  const { data: playlists } = useSWR(
+  const { data: playlists, isLoading: isPlaylistsLoading } = useSWR(
     shouldFetchAllPlaylists ? "spotifyService.GetUserPlaylists" : null,
     spotifyService.GetUserPlaylists,
   );
@@ -75,6 +75,7 @@ export const usePlaylistFormBlock = () => {
     hasToken,
     fetchAllPlaylists,
     playlists,
+    isPlaylistsLoading,
     isBackingUp,
     handleBackup,
   };

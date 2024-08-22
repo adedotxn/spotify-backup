@@ -1,19 +1,8 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useLoginBlock } from "./useLoginBlock";
-import useSWR from "swr";
-import spotifyService from "../../services/spotify.service";
 
 const LoginBlock = () => {
-  const { isLoggedIn, handleLogin, handleLogout } = useLoginBlock();
-
-  const { data, error } = useSWR(
-    "spotifyService.getCurrentUser",
-    spotifyService.getCurrentUser,
-  );
-
-  console.log("isloggedin", isLoggedIn);
-
-  console.log("yoooooo", { data, error });
+  const { isLoggedIn, handleLogin, handleLogout, data } = useLoginBlock();
 
   return (
     <div>

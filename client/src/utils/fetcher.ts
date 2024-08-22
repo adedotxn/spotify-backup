@@ -5,7 +5,10 @@ export const fetcher = async <T>(
   const data = await res.json();
 
   if (!res.ok) {
-    console.error("Error during fetch:", data);
+    console.error(
+      `Error during "${String(args[1]?.method).toUpperCase()}" request from ${String(args[0])} :`,
+      data,
+    );
     throw data;
   }
 

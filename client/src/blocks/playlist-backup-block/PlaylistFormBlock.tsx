@@ -65,6 +65,14 @@ export default function PlaylistFormBlock() {
           <p>Playlist ID: {hook.extractedPlaylistId}</p>
         </form>
       </div>
+      {hook.isPlaylistsLoading && (
+        <div className=" bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <p className="text-white text-lg mb-4">Fetching playlists...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500 mx-auto"></div>
+          </div>
+        </div>
+      )}
       {hook.playlists && (
         <PlaylistsDisplay
           playlists={hook.playlists}
