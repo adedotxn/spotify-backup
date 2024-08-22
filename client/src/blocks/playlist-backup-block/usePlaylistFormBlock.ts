@@ -38,8 +38,6 @@ export const usePlaylistFormBlock = () => {
     spotifyService.GetUserPlaylists,
   );
 
-  console.log("PLAYLISTS", playlists);
-
   const [isBackingUp, setIsBackingUp] = useState(false);
 
   const handleBackup = async (selectedPlaylistIds: Array<unknown>) => {

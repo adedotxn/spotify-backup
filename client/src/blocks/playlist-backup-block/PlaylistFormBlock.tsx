@@ -26,15 +26,17 @@ export default function PlaylistFormBlock() {
         </div>
         <form action="" className="grid gap-2 mt-8 ">
           <div className="relative grid gap-2 ">
-            <label htmlFor="" className="font-bold text-xl">
-              Want to backup any specific public playlist instead? <br />{" "}
-              <span className="text-lg">Paste Spotify Link</span>
+            <label htmlFor="" className="font-bold text-lg">
+              Want to backup any specific public playlist instead?
             </label>
-            <div className="grid md:flex items-center gap-2 md:gap-8">
-              <div>
+
+            <div className="relative grid md:flex items-center gap-2 md:gap-8">
+              <p className="text-base">Paste Spotify Link</p>
+
+              <div className="relative">
                 <Icon
                   icon="system-uicons:link"
-                  className="text-gray-300 absolute bottom-2 "
+                  className="text-gray-300 absolute top-1 "
                   width={30}
                   height={30}
                 />
@@ -43,7 +45,7 @@ export default function PlaylistFormBlock() {
                   placeholder="e.g: https://open.spotify.com/playlist/:playlistId"
                   value={hook.spotifyLink}
                   onChange={(e) => hook.setSpotifyLink(e.target.value)}
-                  className="py-2  pl-10 border-b border-gray-500 placeholder-gray-500 text-white bg-transparent outline-none"
+                  className="py-1  pl-10 border-b border-gray-500 placeholder-gray-500 text-white bg-transparent outline-none"
                 />
               </div>
 
