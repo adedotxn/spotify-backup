@@ -17,7 +17,7 @@ export const useLoginBlock = () => {
     shouldFetch ? "spotifyService.getCurrentUser" : null,
     spotifyService.getCurrentUser,
     {
-      onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+      onErrorRetry: (_error, _key, _config, revalidate, { retryCount }) => {
         if (retryCount >= 3) return;
         setTimeout(() => revalidate({ retryCount }), 5000);
       },
