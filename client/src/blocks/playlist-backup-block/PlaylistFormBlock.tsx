@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { usePlaylistFormBlock } from "./usePlaylistFormBlock";
 import PlaylistsDisplay from "./units/playlist-display";
 import LoginBlock from "../login-block/LoginBlock";
+import SinglePlaylistDisplay from "./units/single-playlist-display";
 
 export default function PlaylistFormBlock() {
   const hook = usePlaylistFormBlock();
@@ -51,7 +52,7 @@ export default function PlaylistFormBlock() {
 
               <button
                 type="button"
-                // onClick={getPlaylist}
+                onClick={hook.getPlaylistById}
                 className="text-white bg-gray-500 w-fit rounded-md py-1 px-2 font-semibold flex gap-1"
               >
                 <Icon
@@ -75,6 +76,14 @@ export default function PlaylistFormBlock() {
           </div>
         </div>
       )}
+      {hook.singlePlaylist && (
+        <SinglePlaylistDisplay
+          playlist={hook.singlePlaylist}
+          handleBackup={hook.handleBackupSinglePlaylist}
+          isBackingUp={hook.isBackingUp}
+        />
+      )}
+
       {hook.playlists && (
         <PlaylistsDisplay
           playlists={hook.playlists}

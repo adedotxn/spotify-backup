@@ -187,9 +187,7 @@ class SpotifyService {
     return playlists;
   }
 
-  async GetPlaylistDetails(
-    playlistId: string,
-  ): Promise<SpotifyPlaylist | null> {
+  async GetPlaylistByID(playlistId: string): Promise<SpotifyPlaylist> {
     const token = getLocalStorage(SPOTIFY_ACCESS_TOKEN);
     if (!token) throw new Error("No access token available");
 
@@ -250,7 +248,7 @@ class SpotifyService {
   async backupPlaylist(
     playlistId: string,
   ): Promise<{ name: string; csv: string }> {
-    const playlist = await this.GetPlaylistDetails(playlistId);
+    const playlist = await this.GetPlaylistByID(playlistId);
     if (!playlist) throw new Error("Playlist not found");
 
     const tracks = await this.getPlaylistTracks(playlistId);
@@ -268,6 +266,13 @@ class SpotifyService {
     }
 
     return backups;
+  }
+
+  async backupSinglePlaylist(
+    playlist: SpotifyPlaylist,
+  ): Promise<{ name: string; csv: string }> {
+    const csvContent = this.convertToCSV(playlist.tracks.items);
+    return { name: playlist.name, csv: csvContent };
   }
 
   private async getPlaylistTracks(

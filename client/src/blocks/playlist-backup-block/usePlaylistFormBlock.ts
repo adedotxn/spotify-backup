@@ -4,6 +4,7 @@ import { getLocalStorage } from "../../utils/localStorage";
 import useSWR from "swr";
 import spotifyService from "../../services/spotify.service";
 import { downloadCSV } from "../../utils/downloadCsv";
+import { SpotifyPlaylist } from "../../types";
 
 export const usePlaylistFormBlock = () => {
   const [spotifyLink, setSpotifyLink] = useState("");
@@ -60,7 +61,33 @@ export const usePlaylistFormBlock = () => {
       }
     } catch (error) {
       console.error("Error backing up playlists:", error);
-      // You might want to show an error message to the user here
+    } finally {
+      setIsBackingUp(false);
+    }
+  };
+
+  const [singlePlaylist, setSinglePlaylist] = useState<SpotifyPlaylist | null>(
+    null,
+  );
+
+  const getPlaylistById = async () => {
+    const response = await spotifyService.GetPlaylistByID(extractedId);
+    if (response) setSinglePlaylist(response);
+  };
+
+  const handleBackupSinglePlaylist = async () => {
+    if (!singlePlaylist) {
+      console.error("No playlist data available to backup");
+      return;
+    }
+
+    setIsBackingUp(true);
+    try {
+      const { name, csv } =
+        await spotifyService.backupSinglePlaylist(singlePlaylist);
+      downloadCSV(csv, `${name}_backup.csv`);
+    } catch (error) {
+      console.error("Error backing up single playlist:", error);
     } finally {
       setIsBackingUp(false);
     }
@@ -76,5 +103,8 @@ export const usePlaylistFormBlock = () => {
     isPlaylistsLoading,
     isBackingUp,
     handleBackup,
+    getPlaylistById,
+    singlePlaylist,
+    handleBackupSinglePlaylist,
   };
 };
