@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "@elysiajs/server-timing": "^1.1.0",
-    "elysia": "latest"
+    "@prisma/client": "^5.19.1",
+    "elysia": "latest",
+    "prisma": "^5.19.1"
   },
   "devDependencies": {
     "bun-types": "latest"

@@ -11,7 +11,6 @@ import type {
   SpotifyUser,
   SpotifyUserPlaylists,
 } from "../types";
-// import { compress } from "lz-string";
 
 class SpotifyService {
   private clientId: string;
