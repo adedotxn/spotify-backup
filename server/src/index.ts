@@ -1,11 +1,12 @@
 import { Elysia, t } from "elysia";
 import { serverTiming } from "@elysiajs/server-timing";
-import { backupPlugin } from "./backups.plugin";
+import { userPlugin } from "./modules/user/user.plugin";
+import { backupPlugin } from "./modules/backup/backups.plugin";
 
 const app = new Elysia()
   .use(serverTiming())
+  .use(userPlugin)
   .use(backupPlugin)
-  .get("/", () => "Hello Elysia")
   .listen(3000);
 
 console.log(
